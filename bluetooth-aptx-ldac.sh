@@ -3,6 +3,14 @@
 # this script compiles the libraries and bluetooth modules to be able to use aptX and LDAC codecs via bluetooth
 # on debian buster (10)
 
+####
+# 
+# Based on the great projects of EHfive (https://github.com/EHfive):
+# https://github.com/EHfive/pulseaudio-modules-bt
+# https://github.com/EHfive/ldacBT
+#
+####
+
 
 
 # install preqisites on normal debian buster (10) install
