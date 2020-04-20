@@ -11,7 +11,7 @@ sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libd
 
 temp_compile_dir=$(mktemp -d)
 
-cd $temp_compile_dir
+cd "$temp_compile_dir"
 
 
 # compile libldac
@@ -32,7 +32,7 @@ sudo find $MODDIR -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp {} {}.bak \;
 
 
 # compile pulseaudio-modules-bt
-cd $temp_compile_dir
+cd "$temp_compile_dir"
 
 git clone https://github.com/EHfive/pulseaudio-modules-bt.git
 cd pulseaudio-modules-bt
