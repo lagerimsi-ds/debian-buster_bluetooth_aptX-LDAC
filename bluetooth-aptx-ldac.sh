@@ -7,7 +7,7 @@
 
 # install preqisites on normal debian buster (10) install
 
-sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev
+sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
 
 temp_compile_dir=$(mktemp -d)
 
