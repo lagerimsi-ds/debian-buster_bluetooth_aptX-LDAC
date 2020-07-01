@@ -15,7 +15,7 @@
 
 # install preqisites on normal debian buster (10) install
 
-sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
+sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git checkinstall
 
 temp_compile_dir=$(mktemp -d)
 
@@ -29,8 +29,8 @@ git submodule update --init
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OFF ../
-cd ..
-sudo make DESTDIR=$DEST_DIR install
+make
+sudo checkinstall --pkgname libldac
 
 # backup original libraries
 MODDIR=`pkg-config --variable=modlibexecdir libpulse`
@@ -50,7 +50,7 @@ mkdir build
 cd build
 cmake ..
 make
-sudo make install
+sudo checkinstall --pkgname pulseaudio-module-bluetooth
 
 
 
