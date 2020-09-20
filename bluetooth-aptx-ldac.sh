@@ -28,7 +28,7 @@ then
         sudo apt update
     else
         ## set used variables to their standards
-       $backports_enabled="n"        
+       $backports_enabled = "n"        
     fi
 fi
 
