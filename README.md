@@ -1,7 +1,7 @@
 # debian-buster_bluetooth_aptX-LDAC
 Script installing aptX and LDAC codecs for bluetooth devices on Debian 10 buster.
 
-To install as deb-packages backports must be enabled to be able to use checkinstall.
+
 
 What does it do?
 
