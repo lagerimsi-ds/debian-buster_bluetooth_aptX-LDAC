@@ -11,9 +11,9 @@ What does it do?
 - Backup the original libraries as <libname>.bak in their original folder.
 - Clone the required sources from the EHfive project site.
 - Compile them 
-- install them
-  - with backports turnes on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (uninstall possible)
-  - w/o backports: normal make install
+- Install them
+  - with backports turned on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (uninstall possible)
+  - w/o backports: normal 'make install'
   
 For more details see the comments in the script.
 
