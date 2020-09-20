@@ -118,4 +118,3 @@ echo -E "Check the line with 'Media Codec - non-A2DP (xyz)' below 'Set config'"
 echo -E "To configure the codec manually check the options for /etc/pulse/default.pa here: https://github.com/EHfive/pulseaudio-modules-bt#configure"
 
 
-sudo rm -R "$temp_compile_dir"
