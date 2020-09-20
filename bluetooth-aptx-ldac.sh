@@ -98,7 +98,7 @@ fi
 ## configure pulseaudio to use LDAC in high quality - ask user if this has to be done
 read -p "Do you want to force using LDAC-codec in high quality? y/n [n] " answer
 if [ "$answer" = "y" ]
-then i
+then 
     # exchange text in the pulseaudio config - in front make a copry name <filename.bak> in same folder
     sudo sed -i.bak 's/^load-module module-bluetooth-discover$/load-module module-bluetooth-discover a2dp_config="ldac_eqmid=hq ldac_fmt=f32"/g' /etc/pulse/default.pa
 fi
@@ -118,3 +118,4 @@ echo -E "Check the line with 'Media Codec - non-A2DP (xyz)' below 'Set config'"
 echo -E "To configure the codec manually check the options for /etc/pulse/default.pa here: https://github.com/EHfive/pulseaudio-modules-bt#configure"
 
 
+sudo rm -R "$temp_compile_dir"
