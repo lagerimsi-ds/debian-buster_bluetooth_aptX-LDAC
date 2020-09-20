@@ -12,7 +12,7 @@
 ####
 
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
-if [[ "$(lsb-release -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
+if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
 then
     read -p "Do you want to enable the backports repository for your system? y/n [n] " backports-enabled  
     
