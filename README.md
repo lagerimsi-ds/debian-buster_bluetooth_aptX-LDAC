@@ -9,7 +9,7 @@ What does it do?
 - Clone the required sources from the EHfive project site.
 - Compile them 
 - install them
-  - with backports turnes on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (unistall possible)
+  - with backports turnes on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (uninstall possible)
   - w/o backports: normal make install
   
 For more details see the comments in the script.
