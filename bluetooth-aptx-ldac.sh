@@ -14,9 +14,9 @@
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
 then
-    read -p "Do you want to enable the backports repository for your system? y/n [n] " backports-enabled  
+    read -p "Do you want to enable the backports repository for your system? y/n [n] " backports_enabled  
     
-    if [ "$backports-enabled" = "y" ]
+    if [ "$backports_enabled" = "y" ]
     then 
         ## add backports-repository to the source and reload apt cache to able to install the necessary packages
         # add repo-file
@@ -28,12 +28,12 @@ then
         sudo apt update
     else
         ## set used variables to their standards
-        backports-enabled="n"        
+       $backports_enabled="n"        
     fi
 fi
 
 ## installs the packages needed on normal debian buster (10) install
-if [ "$backports-enabled" = "y" ]
+if [ "$backports_enabled" = "y" ]
 then 
     sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
 else
@@ -71,7 +71,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OF
 # one up
 cd ..
 # install the compiled thing
-if [ "$backports-enabled" = "y" ]
+if [ "$backports_enabled" = "y" ]
 then 
     checkinstall --pkgname libldac
 else
@@ -91,7 +91,7 @@ cd build
 cmake ..
 make
 
-if [ "$backports-enabled" = "y" ]
+if [ "$backports_enabled" = "y" ]
 then
     checkinstall --pkgname pulseaudio-module-bluetooth
 else
