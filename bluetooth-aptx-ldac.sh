@@ -44,9 +44,8 @@ MODDIR=`pkg-config --variable=modlibexecdir libpulse`
 sudo find $MODDIR -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp -v {} {}.bak \;
 
 
-# creates a temporary directory which is used for the compilation process 
+## creates a temporary directory which is used for the compilation process 
 temp_compile_dir=$(mktemp -d)
-
 # jump into that directory
 cd "$temp_compile_dir"
 
