@@ -1,11 +1,14 @@
 # debian-buster_bluetooth_aptX-LDAC
 Script installing aptX and LDAC codecs for bluetooth devices on Debian 10 buster.
 
+Choose backports turned on to install as deb-packages.
+
 
 
 What does it do?
-
+-
 - Install the required sofware packages
+- Backup the original libraries as <libname>.bak in their original folder.
 - Clone the required sources from the EHfive project site.
 - Compile them 
 - install them
