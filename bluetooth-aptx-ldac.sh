@@ -27,8 +27,8 @@ then
         # reload package-cache
         sudo apt update
     else
-        ## set used variables to their standards
-       $backports_enabled = "n"        
+       ## set used variables to their standard
+        $backports_enabled="n"
     fi
 fi
 
