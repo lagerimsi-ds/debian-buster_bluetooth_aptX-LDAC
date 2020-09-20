@@ -14,7 +14,7 @@
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
 then
-    read -p "Do you want to enable the backports repository for your system? y/n [n] " backports_enabled  
+    read -p "Do you want to enable the backports repository on your system in order to use debian-packages installation ? y/n [n] " backports_enabled  
     
     if [ "$backports_enabled" = "y" ]
     then 
@@ -69,7 +69,7 @@ cd ..
 # install the compiled thing
 if [ "$backports_enabled" = "y" ]
 then 
-    checkinstall --pkgname libldac
+    checkinstall -D --install=yes --pkgname libldac 
 else
     sudo make DESTDIR=$DEST_DIR install
 fi
@@ -89,7 +89,7 @@ make
 
 if [ "$backports_enabled" = "y" ]
 then
-    checkinstall --pkgname pulseaudio-module-bluetooth
+    checkinstall -D --install=yes --pkgname pulseaudio-module-bluetooth
 else
     sudo make install
 fi
