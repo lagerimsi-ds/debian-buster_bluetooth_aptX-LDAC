@@ -26,6 +26,7 @@ then
 
         # reload package-cache
         sudo apt update
+    fi
 fi
 
 ## installs the packages needed on normal debian buster (10) install
