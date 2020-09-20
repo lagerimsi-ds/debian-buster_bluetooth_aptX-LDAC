@@ -46,10 +46,10 @@ sudo find $MODDIR -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp -v {} {}.bak \
 
 ## creates a temporary directory which is used for the compilation process 
 temp_compile_dir=$(mktemp -d)
+
+
 # jump into that directory
 cd "$temp_compile_dir"
-
-
 ## compile libldac
 # check out the source from github
 git clone https://github.com/EHfive/ldacBT.git
@@ -118,4 +118,4 @@ echo -E "Check the line with 'Media Codec - non-A2DP (xyz)' below 'Set config'"
 echo -E "To configure the codec manually check the options for /etc/pulse/default.pa here: https://github.com/EHfive/pulseaudio-modules-bt#configure"
 
 
-#sudo rm -R "$temp_compile_dir"
+sudo rm -R "$temp_compile_dir"
