@@ -11,35 +11,75 @@
 #
 ####
 
+## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
+if [[ "$(lsb-realease -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
+then
+    read -p "Do you want to enable the backports repository for your system? y/n [n] " backports-enabled  
+    
+    if [ "$backports-enabled" = "y" ]
+    then 
+        ## add backports-repository to the source and reload apt cache to able to install the necessary packages
+        # add repo-file
+        sudo echo -e "# Stable backports\n
+        deb https://deb.debian.org/debian buster-backports main contrib non-free\n
+        deb-src https://deb.debian.org/debian buster-backports main contrib non-free" > /etc/apt/sources.list.d/buster-backports.list
+
+        # reload package-cache
+        sudo apt update
+    else
+        ## set used variables to their standards
+        backports-enabled="n"        
+    fi
+fi
+
+## installs the packages needed on normal debian buster (10) install
+if [ "$backports-enabled" = "y" ]
+then 
+    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
+else
+    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git checkinstall
+fi
 
 
-# install preqisites on normal debian buster (10) install
 
-sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
+# backup original libraries
+echo -e "Backup:\n"
+MODDIR=`pkg-config --variable=modlibexecdir libpulse`
+sudo find $MODDIR -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp -v {} {}.bak \;
 
+
+# creates a temporary directory which is used for the compilation process 
 temp_compile_dir=$(mktemp -d)
 
+# jump into that directory
 cd "$temp_compile_dir"
 
 
-# compile libldac
+## compile libldac
+# check out the source from github
 git clone https://github.com/EHfive/ldacBT.git
+# jump into the dir
 cd ldacBT/
+# update the git-sumodule
 git submodule update --init
+# create a direcrtory
 mkdir build
+# jump in
 cd build
+# use the c-compiler with the given options
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OFF ../
+# one up
 cd ..
-sudo make DESTDIR=$DEST_DIR install
+# install the compiled thing
+if [ "$backports-enabled" = "y" ]
+then 
+    checkinstall --pkgname libldac
+else
+    sudo make DESTDIR=$DEST_DIR install
+fi
 
-# backup original libraries
-MODDIR=`pkg-config --variable=modlibexecdir libpulse`
 
-sudo find $MODDIR -regex ".*\(bluez5\|bluetooth\).*\.so" -exec cp {} {}.bak \;
-
-
-
-# compile pulseaudio-modules-bt
+## compile pulseaudio-modules-bt - same as above
 cd "$temp_compile_dir"
 
 git clone https://github.com/EHfive/pulseaudio-modules-bt.git
@@ -50,24 +90,28 @@ mkdir build
 cd build
 cmake ..
 make
-sudo make install
+
+if [ "$backports-enabled" = "y" ]
+then
+    checkinstall --pkgname pulseaudio-module-bluetooth
+else
+    sudo make install
+fi
 
 
 
-# configure pulseaudio to use LDAC in high quality
+## configure pulseaudio to use LDAC in high quality - ask user if this has to be done
 read -p "Do you want to force using LDAC-codec in high quality? y/n [n] " answer
 if [ "$answer" = "y" ]
-then 
+then i
+    # exchange text in the pulseaudio config - in front make a copry name <filename.bak> in same folder
     sudo sed -i.bak 's/^load-module module-bluetooth-discover$/load-module module-bluetooth-discover a2dp_config="ldac_eqmid=hq ldac_fmt=f32"/g' /etc/pulse/default.pa
 fi
  
 
-
 # restart pulseaudio and bluetooth service
 pulseaudio -k
-
 sudo systemctl restart bluetooth.service
-
 
 
 # User messages and infos
