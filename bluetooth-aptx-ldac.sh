@@ -26,10 +26,6 @@ then
 
         # reload package-cache
         sudo apt update
-    else
-       ## set used variables to their standard
-        $backports_enabled="n"
-    fi
 fi
 
 ## installs the packages needed on normal debian buster (10) install
