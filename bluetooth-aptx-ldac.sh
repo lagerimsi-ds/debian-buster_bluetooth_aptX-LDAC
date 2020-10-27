@@ -32,9 +32,9 @@ fi
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ]
 then 
-    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
-else
     sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git checkinstall
+else
+    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
 fi
 
 
@@ -53,19 +53,15 @@ temp_compile_dir=$(mktemp -d)
 cd "$temp_compile_dir"
 ## compile libldac
 # check out the source from github
-git clone https://github.com/EHfive/ldacBT.git
+git clone --recurse-submodules https://github.com/EHfive/ldacBT.git
 # jump into the dir
 cd ldacBT/
-# update the git-sumodule
-git submodule update --init
 # create a direcrtory
 mkdir build
 # jump in
 cd build
 # use the c-compiler with the given options
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OFF ../
-# one up
-cd ..
 # install the compiled thing
 if [ "$backports_enabled" = "y" ]
 then 
@@ -78,9 +74,8 @@ fi
 ## compile pulseaudio-modules-bt - same as above
 cd "$temp_compile_dir"
 
-git clone https://github.com/EHfive/pulseaudio-modules-bt.git
+git clone --recurse-submodules https://github.com/EHfive/pulseaudio-modules-bt.git
 cd pulseaudio-modules-bt
-git submodule update --init
 git -C pa/ checkout v`pkg-config libpulse --modversion|sed 's/[^0-9.]*\([0-9.]*\).*/\1/'`
 mkdir build
 cd build
