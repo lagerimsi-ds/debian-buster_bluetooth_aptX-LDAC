@@ -32,9 +32,9 @@ fi
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ]
 then 
-    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git checkinstall
+    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev git checkinstall
 else
-    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev git
+    sudo apt install bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev git
 fi
 
 
