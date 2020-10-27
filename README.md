@@ -9,7 +9,7 @@ What does it do?
 -
 - Install the required sofware packages
 - Backup the original libraries as <libname>.bak in their original folder.
-- Clone the required sources from the EHfive project site and their submodules from pulseaudio and google-andriod repos
+- Clone the required sources from the EHfive project site and their submodules from pulseaudio and google-android repos
 - Compile them 
 - Install them
   - with backports turned on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (uninstall possible)
