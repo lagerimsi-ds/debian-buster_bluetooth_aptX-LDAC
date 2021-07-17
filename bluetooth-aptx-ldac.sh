@@ -25,7 +25,7 @@ then
     if [ "$backports_enabled" = "y" ]
     then 
         ## add backports-repository to the source and reload apt cache to enable the necessary packages
-        apt-add-repository buster-backports
+        sudo apt-add-repository buster-backports
 
         # reload package-cache
         sudo apt-get update
