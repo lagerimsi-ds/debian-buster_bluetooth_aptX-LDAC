@@ -34,7 +34,7 @@ then
 			echo $backports_enabled
 		fi
 	else
-		backports_enabled = "y"
+		$backports_enabled = "y"
 		echo "backports: $backports_enabled"
 	fi
 else
