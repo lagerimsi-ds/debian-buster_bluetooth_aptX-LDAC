@@ -67,9 +67,12 @@ cd build
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OFF ../
 # install the compiled thing
 if [ "$backports_enabled" = "y" ]
-then 
+then
+    echo -E ""
+    echo - E "####"
+    echo -E ""
     echo -E "For ease of use you can just agree to all aked questions here with <enter>" 
-    sleep 5
+    sleep 4
     sudo checkinstall -D --install=yes --pkgname libldac 
 else
     sudo make DESTDIR=$DEST_DIR install
@@ -89,8 +92,11 @@ make
 
 if [ "$backports_enabled" = "y" ]
 then
+    echo -E ""
+    echo -E "####"
+    echo -E ""
     echo -E "For ease of use you can just agree to all aked questions here with <enter>" 
-    sleep 5
+    sleep 4 
     sudo checkinstall -D --install=yes --pkgname pulseaudio-module-bluetooth
 else
     sudo make install
