@@ -11,7 +11,7 @@
 #
 ####
 
-backports-enabled = "n"
+backports_enabled = "n"
 
 ## add contrib and non-free repos as they are needed for some codecs (like aac) to install
 
