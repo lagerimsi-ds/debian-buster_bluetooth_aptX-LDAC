@@ -34,7 +34,7 @@ fi
 
 if apt-cache policy | grep -q buster-backports
 then
-	backports_enabled = "y"
+	"$backports_enabled" = "y"
 fi
 
 
