@@ -31,11 +31,9 @@ then
 
 		    	# reload package-cache
 		    	sudo apt-get update
-			echo $backports_enabled
 		fi
 	else
-		$backports_enabled = "y"
-		echo "backports: $backports_enabled"
+		backports_enabled="y"
 	fi
 else
 	echo -E "This is no Debian Buster. Goodbye!"
@@ -76,7 +74,6 @@ cd build
 # use the c-compiler with the given options
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OFF ../
 # install the compiled thing
-echo "backports: $backports_enabled"
 
 if [ "$backports_enabled" = "y" ]
 then
@@ -102,7 +99,6 @@ cd build
 cmake ..
 make
 
-echo "backports: $backports_enabled"
 if [ "$backports_enabled" = "y" ]
 then
     echo -E ""
