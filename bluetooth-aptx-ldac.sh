@@ -24,11 +24,8 @@ then
     
     if [ "$backports_enabled" = "y" ]
     then 
-        ## add backports-repository to the source and reload apt cache to able to install the necessary packages
-        # add repo-file
-        sudo echo -e "# Stable backports\n
-        deb https://deb.debian.org/debian buster-backports main contrib non-free\n
-        deb-src https://deb.debian.org/debian buster-backports main contrib non-free" > /etc/apt/sources.list.d/buster-backports.list
+        ## add backports-repository to the source and reload apt cache to enable the necessary packages
+        apt-add-repository buster-backports
 
         # reload package-cache
         sudo apt-get update
