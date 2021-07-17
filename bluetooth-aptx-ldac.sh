@@ -80,7 +80,7 @@ then
     echo -E ""
     echo -E "####"
     echo -E ""
-    echo -E "For ease of use you can just agree to all aked questions here with <enter>" 
+    echo -E "For ease of use you can just agree to all asked questions here with <enter>" 
     sleep 4
     sudo checkinstall -D --install=yes --pkgname libldac 
 else
@@ -104,7 +104,7 @@ then
     echo -E ""
     echo -E "####"
     echo -E ""
-    echo -E "For ease of use you can just agree to all aked questions here with <enter>" 
+    echo -E "For ease of use you can just agree to all asked questions here with <enter>" 
     sleep 4 
     sudo checkinstall -D --install=yes --pkgname pulseaudio-module-bluetooth
 else
