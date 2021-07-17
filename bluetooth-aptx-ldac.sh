@@ -78,7 +78,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/usr -DINSTALL_LIBDIR=/usr/lib -DLDAC_SOFT_FLOAT=OF
 if [ "$backports_enabled" = "y" ]
 then
     echo -E ""
-    echo - E "####"
+    echo -E "####"
     echo -E ""
     echo -E "For ease of use you can just agree to all aked questions here with <enter>" 
     sleep 4
