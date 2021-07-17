@@ -18,21 +18,27 @@ sudo apt-add-repository non-free
 sudo apt-get update
 
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
-if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt-cache policy | grep -q buster-backports
+if [[ "$(lsb_release -cs)" == "buster" ]] 
 then
-    read -p "Do you want to enable the backports repository on your system in order to use debian-packages installation ? y/n [n] " backports_enabled  
+    if  ! apt-cache policy | grep -q buster-backports
+	then
+			read -p "Do you want to enable the backports repository on your system in order to use debian-packages installation ? y/n [n] " backports_enabled  
     
-    if [ "$backports_enabled" = "y" ]
-    then 
-        ## add backports-repository to the source and reload apt cache to enable the necessary packages
-        sudo apt-add-repository 'deb http://deb.debian.org/debian buster-backports main'
+			if [ "$backports_enabled" = "y" ]
+			then 
+		        ## add backports-repository to the source and reload apt cache to enable the necessary packages
+        		sudo apt-add-repository 'deb http://deb.debian.org/debian buster-backports main'
 
-        # reload package-cache
-        sudo apt-get update
-    fi
-elif [[ "$(lsb_release -cs)" == "buster" ]]
-then
-	backports_enabled = "y"
+		        # reload package-cache
+        		sudo apt-get update
+		    fi
+	elif apt-cache policy | grep -q buster-backports
+	then
+		backports_enabled = "y"
+	fi
+else
+		echo -E "This is no Debian Buster. Goodbye!"
+		exit 0
 fi
 
 ## installs the packages needed on normal debian buster (10) install
