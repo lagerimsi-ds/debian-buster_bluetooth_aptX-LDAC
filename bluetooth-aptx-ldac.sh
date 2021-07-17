@@ -11,8 +11,13 @@
 #
 ####
 
+## add contrib and non-free repos as they are needed for some codecs (like aac) to install
+
+sudo apt-add-repository contrib
+sudo apt-add-repository non-free
+
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
-if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt policy | grep -q buster-backports
+if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt-cache policy | grep -q buster-backports
 then
     read -p "Do you want to enable the backports repository on your system in order to use debian-packages installation ? y/n [n] " backports_enabled  
     
@@ -25,16 +30,16 @@ then
         deb-src https://deb.debian.org/debian buster-backports main contrib non-free" > /etc/apt/sources.list.d/buster-backports.list
 
         # reload package-cache
-        sudo apt update
+        sudo apt-get update
     fi
 fi
 
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ]
 then 
-    sudo apt install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
+    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
 else
-    sudo apt install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
+    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
 fi
 
 
