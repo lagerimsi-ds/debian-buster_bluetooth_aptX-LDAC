@@ -15,6 +15,7 @@
 
 sudo apt-add-repository contrib
 sudo apt-add-repository non-free
+sudo apt-get update
 
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]]  &&  ! apt-cache policy | grep -q buster-backports
