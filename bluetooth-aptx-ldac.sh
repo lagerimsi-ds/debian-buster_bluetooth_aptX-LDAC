@@ -11,8 +11,6 @@
 #
 ####
 
-backports_enabled = "n"
-
 ## add contrib and non-free repos as they are needed for some codecs (like aac) to install
 
 sudo apt-add-repository contrib
@@ -32,13 +30,10 @@ then
         # reload package-cache
         sudo apt-get update
     fi
-fi
-
-if apt-cache policy | grep -q buster-backports
+elif [[ "$(lsb_release -cs)" == "buster" ]]
 then
-	$backports_enabled = "y"
+	backports_enabled = "y"
 fi
-
 
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ] 
