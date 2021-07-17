@@ -137,3 +137,4 @@ echo -E "To configure the codec manually check the options for /etc/pulse/defaul
 
 
 sudo rm -R "$temp_compile_dir"
+
