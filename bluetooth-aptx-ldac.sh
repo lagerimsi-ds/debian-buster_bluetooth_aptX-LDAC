@@ -35,9 +35,18 @@ then
 	else
 		backports_enabled="y"
 	fi
+	
+elif [[ "$(lsb_release -cs)" == "bullseye" ]]
+then
+        backports_enabled="y"
+
+elif [[ "$(lsb_release -cs)" == "bookworm" ]]
+then
+        backports_enabled="y"
+
 else
-	echo -E "This is no Debian Buster. Goodbye!"
-	exit 1
+        echo -E "This is no Debian Buster or Bullseye or Bookwork (testing). Goodbye!"
+        exit 1
 fi
 
 ## installs the packages needed on normal debian buster (10) install
