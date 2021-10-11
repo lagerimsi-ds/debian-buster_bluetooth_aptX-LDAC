@@ -1,5 +1,6 @@
 # debian-buster_bluetooth_aptX-LDAC
-Script installing aptX and LDAC codecs for bluetooth devices on Debian 10 buster.
+Script installing aptX and LDAC codecs for bluetooth devices from Debian 10 buster.
+(Despite the name) It finally also works for *bullseye* and *bookworm (='testing' atm.)*. (This uses the method introduced with the buster-backport-repos to generate apt-/dpkg-compatible packages)
 
 Choose backports turned on to install as deb-packages.
 
@@ -14,6 +15,7 @@ What does it do?
 - Install them
   - with backports turned on: as deb-packages named "libldac" and "pulseaudio-module-bluetooth" (uninstall possible)
   - w/o backports: normal 'make install'
+  - for Debian deleases 'bullseye' and 'bookworm' the dpkg-package method is used, as packages needed are available in th repos by default
   
 For more details see the comments in the script.
 
