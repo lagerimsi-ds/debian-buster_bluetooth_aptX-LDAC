@@ -16,6 +16,8 @@
 sudo apt-add-repository contrib
 sudo apt-add-repository non-free
 sudo apt-get update
+# should be installed by default - just to be safe:
+sudo apt-get install -y lsb-release
 
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]] 
@@ -45,7 +47,7 @@ then
         backports_enabled="y"
 
 else
-        echo -E "This is no Debian Buster or Bullseye or Bookwork (testing). Goodbye!"
+        echo -E "This is no Debian Buster or Bullseye or Bookworm (testing). Goodbye!"
         exit 1
 fi
 
