@@ -7,7 +7,6 @@ Choose backports turned on to install as deb-packages.
 
 
 What does it do?
--
 - Install the required sofware packages
 - Backup the original libraries as <libname>.bak in their original folder.
 - Clone the required sources from the EHfive project site and their submodules from pulseaudio and google-android repos
@@ -19,5 +18,5 @@ What does it do?
   
 For more details see the comments in the script.
 
-
-
+*ARM architecture is not supportet atm.*
+  
