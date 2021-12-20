@@ -22,6 +22,7 @@ sudo apt-get install -y lsb-release
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]] 
 then
+	fdkaac="libfdk-aac1"
 	if  ! apt-cache policy | grep -q buster-backports
 	then
 		read -p "Do you want to enable the backports repository on your system in order to use debian-packages installation ? y/n [n] " backports_enabled  
@@ -40,10 +41,12 @@ then
 	
 elif [[ "$(lsb_release -cs)" == "bullseye" ]]
 then
+	fdkaac="libfdk-aac2"
         backports_enabled="y"
 
 elif [[ "$(lsb_release -cs)" == "bookworm" ]]
 then
+	fdkaac="libfdk-aac2"
         backports_enabled="y"
 
 else
@@ -54,9 +57,9 @@ fi
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ] 
 then 
-    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
+    sudo apt-get install git bluez-hcidump pkg-config cmake $fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
 else
-    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
+    sudo apt-get install git bluez-hcidump pkg-config cmake $fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
 fi
 
 

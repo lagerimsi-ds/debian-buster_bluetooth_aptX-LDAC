@@ -18,5 +18,3 @@ What does it do?
   
 For more details see the comments in the script.
 
-*ARM architecture is not supportet atm.*
-  
