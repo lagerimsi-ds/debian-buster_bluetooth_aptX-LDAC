@@ -17,6 +17,3 @@ What does it do?
   - for Debian deleases 'bullseye' and 'bookworm' the dpkg-package method is used, as packages needed are available in th repos by default
   
 For more details see the comments in the script.
-
-*ARM architecture is not supportet atm.*
-  
