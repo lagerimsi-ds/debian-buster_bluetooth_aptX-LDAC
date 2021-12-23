@@ -19,6 +19,14 @@ sudo apt-get update
 # should be installed by default - just to be safe:
 sudo apt-get install -y lsb-release
 
+if [[ "$(uname -m)"  == "x86_64" ]]
+then
+	$fdkaac = 'fdkaac'
+else
+	$fdkaac = ''
+fi
+
+
 ## ask user if the backports-repository should be activated to install this has to be done but only if the versin of the system is 'buster' and not already enabled
 if [[ "$(lsb_release -cs)" == "buster" ]] 
 then
@@ -54,9 +62,9 @@ fi
 ## installs the packages needed on normal debian buster (10) install
 if [ "$backports_enabled" = "y" ] 
 then 
-    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
+    sudo apt-get install git bluez-hcidump pkg-config cmake $fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libbluetooth-dev libavcodec-dev libfdk-aac-dev git checkinstall
 else
-    sudo apt-get install git bluez-hcidump pkg-config cmake fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
+    sudo apt-get install git bluez-hcidump pkg-config cmake $fdkaac libtool libpulse-dev libdbus-1-dev libsbc-dev libavcodec-dev libbluetooth-dev libfdk-aac-dev git
 fi
 
 
