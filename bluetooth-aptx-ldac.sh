@@ -23,9 +23,9 @@ sudo apt-get install -y lsb-release
 # test on the cpu architecture used whether to install the fdkaac package
 if [[ "$(uname -m)"  == "x86_64" ]]
 then
-	$fdkaac='fdkaac'
+	fdkaac='fdkaac'
 else
-	$fdkaac=''
+	fdkaac=''
 fi
 
 
